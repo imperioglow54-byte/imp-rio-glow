@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080810">
+    <meta name="description" content="Painel administrativo Império Glow.">
+
+    <title>Administração | Império Glow</title>
+
+    <link rel="icon" href="assets/logo-Império-glow.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="admin.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js" defer></script>
+    <script src="admin.js" defer></script>
+</head>
+
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <a href="index.html" class="brand">
+                <img src="assets/logo-Império-glow.jpg" alt="Império Glow">
+                <span>Império <strong>GLOW</strong></span>
+            </a>
+
+            <div class="sidebar-label">GERENCIAMENTO</div>
+
+            <a href="#painel" class="sidebar-link active">
+                <span>▦</span> Painel administrativo
+            </a>
+
+            <a href="#produtos-admin" class="sidebar-link">
+                <span>✦</span> Produtos cadastrados
+            </a>
+
+            <a href="#cadastro" class="sidebar-link">
+                <span>＋</span> Cadastrar produto
+            </a>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-status">
+                    <span class="status-dot"></span>
+                    Gerenciado pelo Supabase
+                </div>
+                <a href="index.html" class="sidebar-link">
+                    <span>↗</span> Ver vitrine
+                </a>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="topbar">
+                <div>
+                    <span class="eyebrow">Império GLOW / ADMIN</span>
+                    <h1 id="pageTitle">Acesso administrativo</h1>
+                </div>
+                <a href="index.html" class="view-site">Ver vitrine ↗</a>
+            </header>
+
+            <section class="panel login-panel" id="loginCard">
+                <div class="panel-icon">✦</div>
+                <span class="section-label">ÁREA RESTRITA</span>
+                <h2>Bem-vinda de volta.</h2>
+                <p class="muted">
+                    Entre com sua conta autorizada para gerenciar produtos e tipos.
+                </p>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-mail</label>
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            autocomplete="username"
+                            placeholder="seuemail@exemplo.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Senha</label>
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            autocomplete="current-password"
+                            placeholder="Digite sua senha"
+                            required
+                        >
+                    </div>
+
+                    <p class="feedback" id="loginFeedback" role="status"></p>
+                    <button type="submit" class="btn-primary" id="btnLogin">
+                        Entrar no painel <span>→</span>
+                    </button>
+                </form>
+
+                <p class="login-note">O acesso utiliza a autenticação do Supabase.</p>
+            </section>
+
+            <section class="dashboard hidden" id="adminCard">
+                <div class="welcome-card" id="painel">
+                    <div>
+                        <span class="section-label">CENTRAL DE CONTROLE</span>
+                        <h2>Gerencie seus produtos.</h2>
+                        <p>
+                            Cadastre maquiagens, organize por tipo e publique tudo
+                            diretamente na vitrine.
+                        </p>
+                    </div>
+                    <div class="welcome-icon">✦</div>
+                </div>
+
+                <section class="inventory-section" id="produtos-admin">
+                    <div class="content-heading inventory-heading">
+                        <div>
+                            <span class="section-label">VITRINE PUBLICADA</span>
+                            <h2>Produtos cadastrados</h2>
+                            <p class="muted">Edite as informações ou remova produtos da vitrine.</p>
+                        </div>
+                    </div>
+
+                    <form id="typeForm" class="genre-manager panel">
+                        <div>
+                            <span class="section-label">ORGANIZE A VITRINE</span>
+                            <h3>Adicionar tipo de maquiagem</h3>
+                            <p class="muted">O tipo ficará disponível no cadastro e nos filtros da vitrine.</p>
+                        </div>
+                        <div class="genre-manager-fields">
+                            <label class="sr-only" for="newTypeName">Nome do tipo</label>
+                            <input
+                                type="text"
+                                id="newTypeName"
+                                maxlength="80"
+                                placeholder="Ex.: Batom"
+                                required
+                            >
+                            <button type="submit" class="btn-primary" id="btnAddType">
+                                Adicionar tipo
+                            </button>
+                        </div>
+                        <p class="feedback" id="typeFeedback" role="status"></p>
+                        <div class="type-list-section">
+                            <h4>Tipos cadastrados</h4>
+                            <div class="type-list" id="typeList" aria-live="polite">
+                                <p class="muted">Carregando tipos...</p>
+                            </div>
+                            <p class="muted">
+                                Tipos associados a produtos não podem ser excluídos.
+                                Reclassifique esses produtos primeiro.
+                            </p>
+                        </div>
+                    </form>
+
+                    <p class="feedback" id="inventoryFeedback" role="status"></p>
+                    <div class="inventory-list" id="inventoryList" aria-live="polite">
+                        <p class="muted">Entre no painel para visualizar os produtos.</p>
+                    </div>
+                </section>
+
+                <div class="content-heading" id="cadastro">
+                    <div>
+                        <span class="section-label">NOVO PRODUTO</span>
+                        <h2 id="formHeading">Cadastrar maquiagem</h2>
+                        <p class="muted" id="formDescription">
+                            Preencha os dados abaixo para publicar na vitrine.
+                        </p>
+                    </div>
+                    <span class="required-note">* Campos obrigatórios</span>
+                </div>
+
+                <form id="productForm" class="panel form-panel">
+                    <div class="form-section-title">
+                        <span class="number">01</span>
+                        <div>
+                            <h3>Informações do produto</h3>
+                            <p>Nome, valor, detalhes e tipo para organizar a vitrine.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full">
+                            <label for="productName">Nome da maquiagem *</label>
+                            <input
+                                type="text"
+                                id="productName"
+                                maxlength="160"
+                                placeholder="Ex.: Batom Matte"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPrice">Preço (R$) *</label>
+                            <input
+                                type="number"
+                                id="productPrice"
+                                min="0"
+                                step="0.01"
+                                inputmode="decimal"
+                                placeholder="0,00"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productType">Tipo *</label>
+                            <select id="productType" required disabled>
+                                <option value="">Cadastre um tipo primeiro</option>
+                            </select>
+                            <p class="feedback" id="typeLoadFeedback" role="status"></p>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="productImage">Foto do produto *</label>
+                            <div class="product-image-upload">
+                                <div class="product-image-preview" id="imagePreview">
+                                    <span id="imagePlaceholder">Prévia da foto</span>
+                                    <img id="previewImage" class="hidden" alt="Pré-visualização da foto do produto">
+                                </div>
+                                <div class="product-image-controls">
+                                    <input
+                                        type="file"
+                                        id="productImage"
+                                        accept="image/jpeg,image/png,image/webp"
+                                        required
+                                    >
+                                    <p class="muted">
+                                        JPG, PNG ou WebP. Tamanho máximo: 5 MB.
+                                    </p>
+                                    <p class="file-name" id="fileName">Nenhuma imagem selecionada.</p>
+                                    <p class="muted hidden" id="imageEditHint">
+                                        A foto atual será mantida se você não escolher outra.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="galleryImagesInput">Fotos adicionais</label>
+                            <div class="gallery-editor">
+                                <div class="gallery-existing" id="galleryExisting"></div>
+                                <div class="gallery-upload-list" id="galleryUploadList"></div>
+                                <input
+                                    type="file"
+                                    id="galleryImagesInput"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    multiple
+                                >
+                                <p class="muted">
+                                    Você pode selecionar várias fotos. Cada uma pode ter até 5 MB.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="productInfo">Informações adicionais</label>
+                            <textarea
+                                id="productInfo"
+                                rows="5"
+                                maxlength="5000"
+                                placeholder="Descreva cor, acabamento, tamanho ou outros detalhes..."
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <p id="saveFeedback" class="feedback" role="status"></p>
+                        <button type="reset" class="btn-secondary" id="btnReset">
+                            Limpar formulário
+                        </button>
+                        <button type="button" class="btn-secondary hidden" id="btnCancelEdit">
+                            Cancelar edição
+                        </button>
+                        <button type="submit" class="btn-primary" id="btnSave">
+                            Publicar produto <span>↗</span>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="security-note">
+                    <span>◈</span>
+                    <p>
+                        Antes de cadastrar produtos, execute
+                        <a href="supabase-setup.sql"><strong>supabase-setup.sql</strong></a>
+                        no SQL Editor do Supabase. O bucket <strong>produtos</strong>
+                        deve estar público para exibir as fotos; as políticas limitam
+                        uploads e alterações à conta autorizada.
+                    </p>
+                </div>
+
+                <button type="button" class="btn-logout" id="btnLogout">
+                    Sair da conta
+                </button>
+            </section>
+
+            <footer class="admin-footer">
+                © <span id="year"></span> Império Glow · Painel administrativo
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

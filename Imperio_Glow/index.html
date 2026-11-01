@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080810">
+    <meta name="description" content="Imperio Glow — maquiagem, beleza e produtos para realçar seu brilho.">
+
+    <title>Imperio Glow | Beleza que brilha</title>
+
+    <link rel="icon" href="assets/logo-imperio-glow.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="#inicio" class="Minha_logo" aria-label="Imperio Glow - início">
+            <img src="assets/logo-imperio-glow.png" alt="Logo Imperio Glow">
+        </a>
+
+        <a href="#inicio" class="meu_titulo" aria-label="Império Glow">
+            <span class="titulo-principal">IMPÉRIO</span>
+            <span class="titulo-secundario">GLOW <span>✦</span></span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="mainNav"
+        >
+            ☰
+        </button>
+
+        <nav class="main-nav" id="mainNav">
+            <a href="#inicio">Início</a>
+            <a href="#catalogo">Produtos</a>
+            <a href="#sobre">Sobre</a>
+            <a
+                href="https://www.instagram.com/imperioglow.beauty/"
+                class="nav-instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Acesse o Instagram do Imperio Glow"
+                title="Instagram do Imperio Glow"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <circle class="instagram-dot" cx="17.5" cy="6.5" r="1"></circle>
+                </svg>
+            </a>
+            <a href="admin.html" class="nav-admin">Área administrativa ↗</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <div class="hero-background"></div>
+
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    SUA BELEZA, SEU BRILHO
+                </div>
+
+                <h1>
+                    Sua beleza tem brilho.
+                    <span>Seu glow tem nome.</span>
+                </h1>
+
+                <p>
+                    Encontre seus produtos de maquiagem favoritos e descubra
+                    novas formas de expressar toda a sua beleza. Escolha,
+                    consulte e peça pelo WhatsApp.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#catalogo" class="btn-primary">
+                        Explorar produtos <span>↘</span>
+                    </a>
+
+                    <a href="#sobre" class="btn-outline">
+                        Conheça o Imperio Glow
+                    </a>
+                </div>
+
+                <div class="hero-signature">
+                    <span class="signature-line"></span>
+                    <span>BELEZA · AUTENTICIDADE · GLOW</span>
+                </div>
+            </div>
+
+            <div class="hero-art" aria-label="Identidade visual do Imperio Glow">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="orbit orbit-three"></div>
+
+                <div class="hero-logo">
+                    <img src="assets/logo-imperio-glow.png" alt="Imperio Glow">
+                </div>
+
+                <span class="floating-note note-one" aria-hidden="true">✦</span>
+                <span class="floating-note note-two" aria-hidden="true">✧</span>
+                <span class="floating-star" aria-hidden="true">✦</span>
+
+                <div class="hero-sticker">
+                    <span>SUA BELEZA</span>
+                    <strong>SEU BRILHO</strong>
+                    <span>SEU IMPERIO</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="music-strip" aria-label="Destaques da loja">
+            <span>✦ MAQUIAGEM</span>
+            <span class="strip-star">✦</span>
+            <span>◉ AUTOCUIDADO</span>
+            <span class="strip-star">✦</span>
+            <span>✧ BELEZA</span>
+            <span class="strip-star">✦</span>
+            <span>♡ SEU MOMENTO GLOW</span>
+        </div>
+
+        <section class="catalog-section" id="catalogo">
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">NOSSA VITRINE</span>
+                    <h2>Encontre seu próximo <span>favorito.</span></h2>
+                </div>
+
+                <p><strong>
+                    Produtos escolhidos para acompanhar sua beleza.
+                    Qual vai fazer parte da sua rotina?
+                    </strong>
+                </p>
+            </div>
+
+            <div class="filter-area">
+                <div class="filter-heading">
+                    <span class="filter-icon">◉</span>
+                    <span>Explore por tipo</span>
+                </div>
+
+                <div class="filters" id="catalogFilters" aria-label="Filtrar produtos">
+                    <button class="filter active" type="button" data-filter="todos">
+                        Todos os produtos
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-grid" id="productGrid" aria-live="polite">
+                <div class="loading-state">
+                    <span class="loading-disc"></span>
+                    <p>Preparando nossa vitrine de beleza...</p>
+                </div>
+            </div>
+
+            <div class="catalog-footer">
+                <span class="footer-line"></span>
+                <p>Seu próximo favorito está esperando por você.</p>
+                <span class="footer-line"></span>
+            </div>
+        </section>
+
+        <section class="about-section" id="sobre">
+            <div class="about-visual">
+                <div class="about-ring">
+                    <img src="assets/logo-imperio-glow.png" alt="Identidade visual Imperio Glow">
+                </div>
+            </div>
+
+            <div class="about-content">
+                <span class="section-label">NOSSA IDENTIDADE</span>
+
+                <h2>
+                    Mais que maquiagem.
+                    <span>Um jeito de brilhar.</span>
+                </h2>
+
+                <p>
+                    O Imperio Glow nasceu para celebrar a beleza em todas as
+                    suas formas, com produtos que ajudam você a expressar
+                    seu estilo e sua personalidade.
+                </p>
+
+                <p>
+                    Explore nossa vitrine, conheça os detalhes de cada produto
+                    e fale com a gente pelo WhatsApp para consultar sua compra.
+                </p>
+
+                <a href="#catalogo" class="btn-primary">
+                    Descobrir os produtos ↗
+                </a>
+            </div>
+        </section>
+
+        <section class="closing-banner">
+            <span class="closing-note" aria-hidden="true">✦</span>
+
+            <div>
+                <span class="section-label">SEU PRÓXIMO MOMENTO GLOW</span>
+                <h2>Deixe sua beleza <span>brilhar.</span></h2>
+            </div>
+
+            <a href="#catalogo" class="btn-outline">
+                Ver produtos ↑
+            </a>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="itemModal" aria-hidden="true">
+        <div class="modal-backdrop" data-close="true"></div>
+
+        <div
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle"
+            aria-describedby="modalDescription"
+            tabindex="-1"
+        >
+            <button
+                class="modal-close"
+                id="modalClose"
+                type="button"
+                aria-label="Fechar detalhes"
+            >
+                &times;
+            </button>
+
+            <div class="modal-gallery">
+                <div class="modal-image-container product-art product-art-modal" id="modalProductArt">
+                    <span class="product-art-sparkle">✦</span>
+                    <span class="product-art-mark">GLOW</span>
+                    <span class="product-art-sparkle">✧</span>
+                    <img id="modalImage" class="hidden" alt="">
+                </div>
+                <div
+                    class="modal-gallery-thumbnails"
+                    id="modalGalleryThumbnails"
+                    aria-label="Fotos do produto"
+                ></div>
+            </div>
+
+            <div class="modal-content">
+                <span class="section-label">DETALHES DO PRODUTO</span>
+                <h2 id="modalTitle">Produto</h2>
+                <p class="product-price" id="modalPrice"></p>
+                <p id="modalDescription"></p>
+                <div class="modal-status">
+                    <span class="status-dot"></span>
+                    <span>Consulte disponibilidade pelo WhatsApp</span>
+                </div>
+                <a
+                    id="modalContact"
+                    class="btn-primary contact-button"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Pedir pelo WhatsApp ↗
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <a href="#inicio" class="footer-brand">
+            IMPÉRIO <span>GLOW</span>
+        </a>
+
+        <p><strong>Deixe sua beleza</strong> brilhar. Revele seu brilho.</p>
+
+        <div class="footer-bottom">
+            <span>© <span id="year"></span> Império Glow</span>
+            <span>© <span id="year"></span> Dev Carlos Adam</span>
+            <a href="#inicio">Voltar ao topo ↑</a>
+        </div>
+    </footer>
+</body>
+</html>
