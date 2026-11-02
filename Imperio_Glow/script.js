@@ -171,7 +171,7 @@ function createProductCard(product) {
 
     const description = document.createElement("p");
     description.className = "product-description";
-    description.textContent = product.informacoes || "Fale com a gente para saber mais sobre este produto.";
+    description.textContent = product.informacoes || "Fale com a gente para saber mais sobre este produto!";
 
     const actions = document.createElement("div");
     actions.className = "product-actions";
