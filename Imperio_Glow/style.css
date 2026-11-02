@@ -43,11 +43,16 @@ body::before {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background:
+    background-image:
+        linear-gradient(rgba(18, 8, 28, .48), rgba(18, 8, 28, .62)),
         radial-gradient(ellipse at 5% 20%,
             rgba(255, 36, 127, .12), transparent 38%),
         radial-gradient(ellipse at 95% 45%,
-            rgba(162, 76, 255, .16), transparent 38%);
+            rgba(162, 76, 255, .16), transparent 38%),
+        url("assets/fundo.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 a {
@@ -83,7 +88,7 @@ img {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(57, 40, 76, .94);
+    background: rgba(57, 19, 58, 0.94);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(20px);
 }
@@ -331,7 +336,7 @@ img {
     align-items: center;
     gap: 12px;
     margin-top: 44px;
-    color: #77758c;
+    color: #fa7dfa;
     font-size: .67rem;
     letter-spacing: 2px;
     font-weight: 700;
@@ -341,6 +346,7 @@ img {
     width: 38px;
     height: 2px;
     background: linear-gradient(90deg, var(--pink), var(--blue));
+    color: darkblue;
 }
 
 /* ILUSTRAÇÃO COM A LOGO */
@@ -1149,6 +1155,11 @@ img {
 
 .footer-bottom a:hover {
     color: var(--pink-light);
+}
+
+.footer-bottom .footer-admin {
+    color: #77758c;
+    font-size: .7rem;
 }
 
 /* ANIMAÇÕES */

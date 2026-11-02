@@ -499,8 +499,8 @@ async function handleSession(session) {
     pageTitle.textContent = session ? "Gerenciamento da vitrine" : "Acesso administrativo";
 
     if (session && changed) {
-        await loadDashboard();
         startRealtimeUpdates();
+        await loadDashboard();
     } else if (!session && changed) {
         await stopRealtimeUpdates();
         products = [];

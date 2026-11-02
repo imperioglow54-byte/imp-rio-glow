@@ -458,5 +458,5 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
-loadCatalog();
 subscribeToCatalogChanges();
+loadCatalog();
